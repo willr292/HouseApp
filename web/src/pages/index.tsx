@@ -7,6 +7,7 @@ import {
   ListItem,
 } from '@chakra-ui/react'
 import { CheckCircleIcon, LinkIcon } from '@chakra-ui/icons'
+
 import { Hero } from '../components/Hero'
 import { Container } from '../components/Container'
 import { Main } from '../components/Main'
@@ -19,7 +20,8 @@ const Index = () => (
     <Hero />
     <Main>
       <Text>
-        Example repository of <Code>Next.js</Code> + <Code>chakra-ui</Code>.
+        Example repository of <Code>Next.js</Code> + <Code>chakra-ui</Code> +{' '}
+        <Code>typescript</Code>.
       </Text>
 
       <List spacing={3} my={0}>
