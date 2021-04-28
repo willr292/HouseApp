@@ -1,12 +1,14 @@
 import { useApolloClient } from "@apollo/client";
 import { Flex, Link, Box, useColorModeValue, Button } from "@chakra-ui/react";
 import NextLink from "next/link";
+import { useRouter } from "next/router";
 import * as React from "react";
 import { useLogoutMutation, useMeQuery } from "../generated/graphql";
 import { isServer } from "../utils/isServer";
 import { DarkModeSwitch } from "./DarkModeSwitch";
 
 export const NavBar = () => {
+  const router = useRouter();
   const bg = useColorModeValue("#38B2AC", "#1D4044");
   const [logout, { loading: logoutFetching }] = useLogoutMutation();
   const apolloClient = useApolloClient();
@@ -17,7 +19,7 @@ export const NavBar = () => {
   let body = null;
 
   // data is loading
-  if (loading) {
+  if (loading || router.route == "/login" || router.route == "/register") {
     // user not logged in
   } else if (!data?.me) {
     body = (

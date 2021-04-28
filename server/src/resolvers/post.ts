@@ -39,7 +39,7 @@ export class PostResolver {
   @Mutation(() => Boolean)
   @UseMiddleware(isAuth)
   async vote(
-    @Arg("postId", () => Int) postId: number,
+    @Arg("postId", () => String) postId: string,
     @Arg("value", () => Int) value: number,
     @Ctx() { req }: MyContext,
   ) {
@@ -164,7 +164,7 @@ export class PostResolver {
   @Mutation(() => Post, { nullable: true })
   @UseMiddleware(isAuth)
   async updatePost(
-    @Arg("id", () => Int) id: string,
+    @Arg("id", () => String) id: string,
     @Arg("title") title: string,
     @Arg("text") text: string,
     @Ctx() { req }: MyContext,
@@ -186,7 +186,7 @@ export class PostResolver {
   @Mutation(() => Boolean)
   @UseMiddleware(isAuth)
   async deletePost(
-    @Arg("id", () => Int) id: string,
+    @Arg("id", () => String) id: string,
     @Ctx() { req }: MyContext,
   ): Promise<boolean> {
     await Post.delete({ id, creatorId: req.session.userId });
