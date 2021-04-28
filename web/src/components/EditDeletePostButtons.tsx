@@ -4,6 +4,8 @@ import NextLink from "next/link";
 import { useDeletePostMutation, useMeQuery } from "../generated/graphql";
 import { EditIcon, DeleteIcon } from "@chakra-ui/icons";
 
+// TODO: Delete post from post/[id] should return to homepage
+
 interface EditDeletePostButtonsProps {
   id: string;
   creatorId: string;

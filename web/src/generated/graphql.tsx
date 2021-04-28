@@ -318,7 +318,7 @@ export type PostsQuery = (
     & Pick<PaginatedPosts, 'hasMore'>
     & { posts: Array<(
       { __typename?: 'Post' }
-      & Pick<Post, 'id' | 'createdAt' | 'updatedAt' | 'title' | 'text' | 'points' | 'voteStatus'>
+      & Pick<Post, 'id' | 'createdAt' | 'updatedAt' | 'title' | 'text' | 'points' | 'voteStatus' | 'bathrooms' | 'beds' | 'price' | 'creatorId' | 'latitude' | 'longitude'>
       & { creator: (
         { __typename?: 'User' }
         & Pick<User, 'id' | 'username'>
@@ -744,6 +744,12 @@ export const PostsDocument = gql`
       text
       points
       voteStatus
+      bathrooms
+      beds
+      price
+      creatorId
+      latitude
+      longitude
       creator {
         id
         username

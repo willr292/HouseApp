@@ -13,6 +13,7 @@ import { usePostsQuery } from "../generated/graphql";
 import { withApollo } from "../utils/withApollo";
 import NextLink from "next/link";
 import { EditDeletePostButtons } from "../components/EditDeletePostButtons";
+import { UpvoteSection } from "../components/UpvoteSection";
 
 const Index = () => {
   const { data, error, loading, fetchMore, variables } = usePostsQuery({
@@ -40,7 +41,11 @@ const Index = () => {
           {data!.posts.posts.map((p) =>
             !p ? null : (
               <Flex key={p.id} p={5} shadow="md" borderWidth="1px">
-                {/* <UpvoteSection post={p} /> */}
+                <UpvoteSection
+                  id={p.id}
+                  voteStatus={p.voteStatus}
+                  points={p.points}
+                />
                 <Box flex={1}>
                   <NextLink href="/post/[id]" as={`/post/${p.id}`}>
                     <Link>

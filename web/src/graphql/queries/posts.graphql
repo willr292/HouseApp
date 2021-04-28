@@ -9,6 +9,12 @@ query Posts($limit: Int!, $cursor: String) {
       text
       points
       voteStatus
+      bathrooms
+      beds
+      price
+      creatorId
+      latitude
+      longitude
       creator {
         id
         username
