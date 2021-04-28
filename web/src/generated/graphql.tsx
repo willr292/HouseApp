@@ -105,6 +105,8 @@ export type Post = {
 export type PostInput = {
   title: Scalars['String'];
   text: Scalars['String'];
+  latitude: Scalars['Float'];
+  longitude: Scalars['Float'];
 };
 
 export type Query = {
@@ -316,7 +318,11 @@ export type PostsQuery = (
     & Pick<PaginatedPosts, 'hasMore'>
     & { posts: Array<(
       { __typename?: 'Post' }
-      & Pick<Post, 'id' | 'createdAt' | 'updatedAt' | 'title'>
+      & Pick<Post, 'id' | 'createdAt' | 'updatedAt' | 'title' | 'text' | 'points' | 'voteStatus'>
+      & { creator: (
+        { __typename?: 'User' }
+        & Pick<User, 'id' | 'username'>
+      ) }
     )> }
   ) }
 );
@@ -735,6 +741,13 @@ export const PostsDocument = gql`
       createdAt
       updatedAt
       title
+      text
+      points
+      voteStatus
+      creator {
+        id
+        username
+      }
     }
   }
 }
