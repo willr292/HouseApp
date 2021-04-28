@@ -8,6 +8,7 @@ import { useCreatePostMutation } from "../generated/graphql";
 import { useIsAuth } from "../utils/useIsAuth";
 import { withApollo } from "../utils/withApollo";
 
+// TODO: add map picker for location.
 const CreatePost: React.FC<{}> = ({}) => {
   const router = useRouter();
   useIsAuth();
@@ -15,8 +16,9 @@ const CreatePost: React.FC<{}> = ({}) => {
   return (
     <Layout variant="small">
       <Formik
-        initialValues={{ title: "", text: "" }}
+        initialValues={{ title: "", text: "", latitude: 0, longitude: 0 }}
         onSubmit={async (values) => {
+          console.log(values);
           const { errors } = await createPost({
             variables: { input: values },
             update: (cache) => {
@@ -33,6 +35,22 @@ const CreatePost: React.FC<{}> = ({}) => {
             <InputField name="title" placeholder="title" label="Title" />
             <Box mt={4}>
               <InputField name="text" placeholder="text..." label="Body" />
+            </Box>
+            <Box mt={4}>
+              <InputField
+                name="latitude"
+                type="number"
+                placeholder="latitude"
+                label="Lat"
+              />
+            </Box>
+            <Box mt={4}>
+              <InputField
+                name="longitude"
+                type="number"
+                placeholder="longitude"
+                label="Long"
+              />
             </Box>
             <Button
               mt={4}

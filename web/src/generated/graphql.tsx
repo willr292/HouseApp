@@ -190,7 +190,7 @@ export type CreatePostMutation = (
   { __typename?: 'Mutation' }
   & { createPost: (
     { __typename?: 'Post' }
-    & Pick<Post, 'id' | 'createdAt' | 'updatedAt' | 'title' | 'text' | 'points' | 'creatorId'>
+    & Pick<Post, 'id' | 'createdAt' | 'updatedAt' | 'title' | 'text' | 'points' | 'creatorId' | 'latitude' | 'longitude'>
   ) }
 );
 
@@ -388,6 +388,8 @@ export const CreatePostDocument = gql`
     text
     points
     creatorId
+    latitude
+    longitude
   }
 }
     `;

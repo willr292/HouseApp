@@ -17,6 +17,7 @@ import {
 import { Post } from "../entities/Post";
 import { getConnection } from "typeorm";
 import { Upvote } from "../entities/Upvote";
+import { IsNumberOptions } from "class-validator";
 
 @InputType()
 class PostInput {
@@ -24,6 +25,10 @@ class PostInput {
   title: string;
   @Field()
   text: string;
+  @Field()
+  latitude: number;
+  @Field()
+  longitude: number;
 }
 
 @ObjectType()

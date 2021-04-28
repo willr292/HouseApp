@@ -7,5 +7,7 @@ mutation CreatePost($input: PostInput!) {
     text
     points
     creatorId
+    latitude
+    longitude
   }
 }
