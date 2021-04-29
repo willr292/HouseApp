@@ -18,7 +18,6 @@ const CreatePost: React.FC<{}> = ({}) => {
       <Formik
         initialValues={{ title: "", text: "", latitude: 0, longitude: 0 }}
         onSubmit={async (values) => {
-          console.log(values);
           const { errors } = await createPost({
             variables: { input: values },
             update: (cache) => {
