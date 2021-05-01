@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import { InputField } from "../components/InputField";
 import { Layout } from "../components/Layout";
+import { MultipleFileUploadField } from "../components/MultipleFileUploadField";
 import { useCreatePostMutation } from "../generated/graphql";
 import { useIsAuth } from "../utils/useIsAuth";
 import { withApollo } from "../utils/withApollo";
@@ -13,13 +14,30 @@ const CreatePost: React.FC<{}> = ({}) => {
   const router = useRouter();
   useIsAuth();
   const [createPost] = useCreatePostMutation();
+
   return (
     <Layout variant="small">
       <Formik
-        initialValues={{ title: "", text: "", latitude: 0, longitude: 0 }}
+        initialValues={{
+          title: "",
+          text: "",
+          latitude: 0,
+          longitude: 0,
+          files: [],
+        }}
         onSubmit={async (values) => {
+          alert(JSON.stringify(values, null, 2));
           const { errors } = await createPost({
-            variables: { input: values },
+            variables: {
+              input: {
+                title: values.title,
+                text: values.title,
+                latitude: values.latitude,
+                longitude: values.longitude,
+                // @ts-ignore
+                photos: values.files.map((file) => file.url),
+              },
+            },
             update: (cache) => {
               cache.evict({ fieldName: "posts:{}" });
             },
@@ -51,6 +69,8 @@ const CreatePost: React.FC<{}> = ({}) => {
                 label="Long"
               />
             </Box>
+            <MultipleFileUploadField name="files" />
+
             <Button
               mt={4}
               type="submit"

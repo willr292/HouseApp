@@ -65,6 +65,10 @@ export class Post extends BaseEntity {
   @Column("double precision")
   longitude: number;
 
+  @Field(() => [String])
+  @Column("text", { array: true })
+  photos: string[];
+
   @Field(() => String)
   @CreateDateColumn()
   createdAt: Date;

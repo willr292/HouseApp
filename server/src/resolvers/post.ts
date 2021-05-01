@@ -29,6 +29,8 @@ class PostInput {
   latitude: number;
   @Field()
   longitude: number;
+  @Field(() => [String])
+  photos: string[];
 }
 
 @ObjectType()

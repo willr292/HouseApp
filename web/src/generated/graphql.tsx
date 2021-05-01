@@ -98,6 +98,7 @@ export type Post = {
   bathrooms: Scalars['Float'];
   latitude: Scalars['Float'];
   longitude: Scalars['Float'];
+  photos: Array<Scalars['String']>;
   createdAt: Scalars['String'];
   updatedAt: Scalars['String'];
 };
@@ -107,6 +108,7 @@ export type PostInput = {
   text: Scalars['String'];
   latitude: Scalars['Float'];
   longitude: Scalars['Float'];
+  photos: Array<Scalars['String']>;
 };
 
 export type Query = {
@@ -192,7 +194,7 @@ export type CreatePostMutation = (
   { __typename?: 'Mutation' }
   & { createPost: (
     { __typename?: 'Post' }
-    & Pick<Post, 'id' | 'createdAt' | 'updatedAt' | 'title' | 'text' | 'points' | 'creatorId' | 'latitude' | 'longitude'>
+    & Pick<Post, 'id' | 'createdAt' | 'updatedAt' | 'title' | 'text' | 'points' | 'creatorId' | 'latitude' | 'longitude' | 'photos'>
   ) }
 );
 
@@ -396,6 +398,7 @@ export const CreatePostDocument = gql`
     creatorId
     latitude
     longitude
+    photos
   }
 }
     `;

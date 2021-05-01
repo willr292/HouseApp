@@ -9,5 +9,6 @@ mutation CreatePost($input: PostInput!) {
     creatorId
     latitude
     longitude
+    photos
   }
 }
