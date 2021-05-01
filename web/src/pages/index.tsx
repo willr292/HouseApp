@@ -14,6 +14,7 @@ import { withApollo } from "../utils/withApollo";
 import NextLink from "next/link";
 import { EditDeletePostButtons } from "../components/EditDeletePostButtons";
 import { UpvoteSection } from "../components/UpvoteSection";
+import { Image } from "@chakra-ui/react";
 
 const Index = () => {
   const { data, error, loading, fetchMore, variables } = usePostsQuery({
@@ -57,6 +58,12 @@ const Index = () => {
                     <Text flex={1} mt={4}>
                       {p.text}
                     </Text>
+                    <Image
+                      boxSize="100px"
+                      objectFit="cover"
+                      src={p.photos[0]}
+                      alt="Photo"
+                    />
                     <Box ml="auto">
                       <EditDeletePostButtons
                         id={p.id}

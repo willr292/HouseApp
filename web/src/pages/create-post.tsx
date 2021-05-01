@@ -10,6 +10,8 @@ import { useIsAuth } from "../utils/useIsAuth";
 import { withApollo } from "../utils/withApollo";
 
 // TODO: add map picker for location.
+// TODO: Validation for form
+
 const CreatePost: React.FC<{}> = ({}) => {
   const router = useRouter();
   useIsAuth();
@@ -26,7 +28,6 @@ const CreatePost: React.FC<{}> = ({}) => {
           files: [],
         }}
         onSubmit={async (values) => {
-          alert(JSON.stringify(values, null, 2));
           const { errors } = await createPost({
             variables: {
               input: {
