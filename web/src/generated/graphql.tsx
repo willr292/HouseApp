@@ -94,7 +94,7 @@ export type Post = {
   creatorId: Scalars['String'];
   creator: User;
   price: Scalars['Float'];
-  beds: Scalars['Float'];
+  bedrooms: Scalars['Float'];
   bathrooms: Scalars['Float'];
   latitude: Scalars['Float'];
   longitude: Scalars['Float'];
@@ -108,6 +108,9 @@ export type PostInput = {
   text: Scalars['String'];
   latitude: Scalars['Float'];
   longitude: Scalars['Float'];
+  bedrooms: Scalars['Float'];
+  bathrooms: Scalars['Float'];
+  price: Scalars['Float'];
   photos: Array<Scalars['String']>;
 };
 
@@ -194,7 +197,7 @@ export type CreatePostMutation = (
   { __typename?: 'Mutation' }
   & { createPost: (
     { __typename?: 'Post' }
-    & Pick<Post, 'id' | 'createdAt' | 'updatedAt' | 'title' | 'text' | 'points' | 'creatorId' | 'latitude' | 'longitude' | 'photos'>
+    & Pick<Post, 'id' | 'createdAt' | 'updatedAt' | 'title' | 'text' | 'points' | 'creatorId' | 'latitude' | 'longitude' | 'bathrooms' | 'bedrooms' | 'price' | 'photos'>
   ) }
 );
 
@@ -320,7 +323,7 @@ export type PostsQuery = (
     & Pick<PaginatedPosts, 'hasMore'>
     & { posts: Array<(
       { __typename?: 'Post' }
-      & Pick<Post, 'id' | 'createdAt' | 'updatedAt' | 'title' | 'text' | 'points' | 'voteStatus' | 'bathrooms' | 'beds' | 'price' | 'creatorId' | 'latitude' | 'longitude' | 'photos'>
+      & Pick<Post, 'id' | 'createdAt' | 'updatedAt' | 'title' | 'text' | 'points' | 'voteStatus' | 'bathrooms' | 'bedrooms' | 'price' | 'creatorId' | 'latitude' | 'longitude' | 'photos'>
       & { creator: (
         { __typename?: 'User' }
         & Pick<User, 'id' | 'username'>
@@ -398,6 +401,9 @@ export const CreatePostDocument = gql`
     creatorId
     latitude
     longitude
+    bathrooms
+    bedrooms
+    price
     photos
   }
 }
@@ -748,7 +754,7 @@ export const PostsDocument = gql`
       points
       voteStatus
       bathrooms
-      beds
+      bedrooms
       price
       creatorId
       latitude

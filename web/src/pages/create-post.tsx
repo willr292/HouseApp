@@ -1,10 +1,11 @@
-import { Box, Button } from "@chakra-ui/react";
-import { Form, Formik } from "formik";
+import { Box, Button, FormLabel, Select } from "@chakra-ui/react";
+import { Field, Form, Formik } from "formik";
 import { useRouter } from "next/router";
 import React from "react";
 import { InputField } from "../components/InputField";
 import { Layout } from "../components/Layout";
 import { MultipleFileUploadField } from "../components/MultipleFileUploadField";
+import { PriceField } from "../components/PriceField";
 import { useCreatePostMutation } from "../generated/graphql";
 import { useIsAuth } from "../utils/useIsAuth";
 import { withApollo } from "../utils/withApollo";
@@ -25,14 +26,21 @@ const CreatePost: React.FC<{}> = ({}) => {
           text: "",
           latitude: 0,
           longitude: 0,
+          price: 0,
           files: [],
+          bedrooms: 1,
+          bathrooms: 1,
         }}
         onSubmit={async (values) => {
+          console.log(values);
           const { errors } = await createPost({
             variables: {
               input: {
                 title: values.title,
                 text: values.title,
+                bathrooms: values.bathrooms,
+                bedrooms: values.bedrooms,
+                price: Number(values.price),
                 latitude: values.latitude,
                 longitude: values.longitude,
                 // @ts-ignore
@@ -52,7 +60,30 @@ const CreatePost: React.FC<{}> = ({}) => {
           <Form>
             <InputField name="title" placeholder="title" label="Title" />
             <Box mt={4}>
-              <InputField name="text" placeholder="text..." label="Body" />
+              <InputField
+                name="text"
+                placeholder="text..."
+                label="Description"
+              />
+            </Box>
+            <Box mt={4}>
+              <FormLabel>🛌</FormLabel>
+              <Field component={Select} name="bedrooms">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </Field>
+            </Box>
+            <Box mt={4}>
+              <FormLabel>🛀</FormLabel>
+              <Field component={Select} name="bathrooms">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </Field>
+            </Box>
+            <Box mt={4}>
+              <PriceField name="price" />
             </Box>
             <Box mt={4}>
               <InputField

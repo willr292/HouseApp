@@ -51,7 +51,7 @@ export class Post extends BaseEntity {
 
   @Field()
   @Column({ type: "int", default: 0 })
-  beds: number;
+  bedrooms: number;
 
   @Field()
   @Column({ type: "int", default: 0 })

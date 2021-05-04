@@ -58,6 +58,9 @@ const Index = () => {
                     <Text flex={1} mt={4}>
                       {p.text}
                     </Text>
+                    <Heading flex={1} mt={4} fontSize="m">
+                      {p.price}
+                    </Heading>
                     <Image
                       boxSize="100px"
                       objectFit="cover"

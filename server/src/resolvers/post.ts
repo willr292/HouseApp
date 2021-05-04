@@ -29,6 +29,12 @@ class PostInput {
   latitude: number;
   @Field()
   longitude: number;
+  @Field()
+  bedrooms: number;
+  @Field()
+  bathrooms: number;
+  @Field()
+  price: number;
   @Field(() => [String])
   photos: string[];
 }

@@ -9,6 +9,9 @@ mutation CreatePost($input: PostInput!) {
     creatorId
     latitude
     longitude
+    bathrooms
+    bedrooms
+    price
     photos
   }
 }
